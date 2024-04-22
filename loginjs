@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+body {
+font-family: Arial, Helvetica, sans-serif;
+background-image: url('C:/Users/Mohit/Downloads/signup.jpg');
+background-position:center;
+background-repeat:no-repeat;
+background-size:cover;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+}
+.container {
+width: 300px;
+margin: 0 auto;
+margin-top: 100px;
+background-color: transparent;
+padding: 20px;
+box-shadow: 0 0 10px rgba(186, 9, 9, 0.2);
+border-radius: 5px;
+}
+.container h2 {
+text-align: center;
+}
+.form-group {
+margin-bottom: 15px;
+}
+.form-group label {
+display: block;
+margin-bottom: 5px;
+}
+.form-group input {
+width: 90%;
+padding: 10px;
+border: 1px solid black;
+border-radius: 3px;
+}
+.form-group button {
+width: 100%;
+padding: 10px;
+background-color: #007BFF;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+}
+.form-group button:hover {
+background-color: #0056b3;
+}
+</style>
+</head>
+<body  >
+<div class="container">
+<h2>Login</h2>
+<form id="loginForm" onsubmit="return login()">
+<div class="form-group">
+<label for="username">Username</label>
+<input type="text" id="username" placeholder="Enter username"required>
+</div><br>
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" id="password" placeholder="Enter password"required>
+</div><br>
+<div class="form-group">
+<button type="submit" onclick="login()">Login</button>
+</div><br>
+<div class="link">
+    <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+    <br>
+<div class="link">
+Don't have an account?<a
+href="file:///C:/Users/Mohit/OneDrive/Desktop/signup.html"> Sign up</a>
+</div>
+</form>
+</div>
+<script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if(username ==="" || password ===""){
+            alert("Username and password must be filled out");
+            return false;
+        }
+        return true;
+    }
+    function login() {
+    
+    event.preventDefault(); 
+
+    if (validateForm()) {
+        
+        window.location.href = "file:///C:/Users/Mohit/OneDrive/Desktop/final.html";
+    }
+   
+}
+
+    
+    function forgotPassword() {
+        var username = prompt("Please enter your mobile number or email address:");
+        if (username !== null && username !== "") {
+            alert("A password reset link has been sent to your email address.");
+        }
+    }
+    document.getElementById("loginForm").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+    var loginButton = document.querySelector(".form-group button");
+    loginButton.addEventListener("mouseover", function() {
+        this.style.backgroundColor = "green";
+    });
+    loginButton.addEventListener("mouseout", function() {
+        this.style.backgroundColor = "#007BFF";
+    });
+});
+
+</script>
+</body>
+</html>

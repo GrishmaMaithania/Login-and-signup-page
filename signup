@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sign up page</title>
+ 
+ <style>
+ body {
+ font-family: Arial, Helvetica, sans-serif;
+ background-position:centre;
+ background-repeat:no-repeat;
+ background-size:cover;
+ margin: 0;
+ padding: 0;
+ }
+ .container1 {
+ width: 350px;
+ margin: 645px;
+ margin-top: 100px;
+ background-color:transparent;
+ padding: 30px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ border-radius: 5px;
+ height:600px;
+ display:block;
+ }
+ .container1 h2 {
+ text-align: center;
+}
+ .form-group1 {
+ margin-bottom: 15px;
+ }
+ .form-group1 label {
+    display: block;
+    margin-bottom: 5px;
+    }
+    .form-group1 input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    }
+    .form-group1 button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    }
+   
+    #password-strength {
+    display: block; 
+    margin-top: 20px; 
+    color: red; 
+}
+
+    small{
+        color:red
+        }
+        </style>
+        </head>
+        <body background="C:\Users\Mohit\Downloads\signup.jpg">
+           <div class="container1">
+               <h2>Sign up</h2><br>
+              <form class="content" action="file:///C:/Users/Mohit/OneDrive/Desktop/final.html" onsubmit="return validateForm()" onsubmit="return validateEmail()">
+               <div class="form-group1">
+               <label for="username">Username</label>
+               <input type="text" id="username" placeholder="Create username">
+               </div>
+               <div class="form-group1">
+               <label for="email">Email</label>
+               <input type="email" id="email" placeholder="Enter Email">
+               </div><br>
+               <div class="form-group1">
+               <label for="password"> Create Password</label>
+               <div style="position:relative;">
+               <input type="password" id="password" placeholder="Create Password"  onkeyup="checkPasswordStrength()">
+               <input type="checkbox" onclick="togglePasswordVisibility()" style="position:absolute; right:170px; top: 120%; transform: translateY(-50%);">
+               <label for="togglePassword" style="position:absolute; right:200px; top: 130%; transform: translateY(-50%); cursor: pointer;">Show Password</label>
+               </div>
+               <small id="password-strength"></small>
+               </div><br>
+               <div class="form-group1">
+               <label for="Confirmpassword">Confirm Password</label>
+               <input type="password" id="Confirmpassword"placeholder="Confirm Password">
+               </div><br>
+               <div class="form-group1">
+               <button type="submit">Sign up</button>
+              </div>
+               </form>
+               </div>
+               <script>
+                   function validateForm() {
+                       var username = document.getElementById("username").value;
+                       var email = document.getElementById("email").value;
+                       var password = document.getElementById("password").value;
+                       var confirmPassword = document.getElementById("Confirmpassword").value;
+               
+                       if (username === "" || email === "" || password === "" || confirmPassword === "") {
+                           alert("All fields must be filled out");
+                           return false;
+                       }
+                       if (password !== confirmPassword) {
+                        alert("Passwords do not match");
+                        return false;
+                    }
+            
+                    
+                    var message = "Username:" + username + "\nemail:" + email + "\npassword:"+ password;
+
+                    alert("Registration done  successfully.This is your entered information:\n\n"+ message);
+                    return true;
+
+                }
+                function checkPasswordStrength() {
+                    var password = document.getElementById("password").value;
+                    var strengthText = document.getElementById("password-strength");
+                    
+                   
+                    strengthText.textContent = "";
+
+                    if (password.length < 8) {
+                       
+                        strengthText.textContent = "Password must be 8 or more characters long.";
+                        strengthText.style.color = "red";
+                    } else {
+                        
+                        var hasUpperCase = /[A-Z]/.test(password);
+                        var hasLowerCase = /[a-z]/.test(password);
+                        var hasNumbers = /\d/.test(password);
+                        var hasSpecialChars = /[^A-Za-z0-9]/.test(password);
+                        var strength = 0;
+
+                        
+                        if (hasUpperCase) strength++;
+                        if (hasLowerCase) strength++;
+                        if (hasNumbers) strength++;
+                        if (hasSpecialChars) strength++;
+
+                        
+                        if (strength < 4) {
+                            strengthText.textContent = "Password must include uppercase and lowercase letters, numbers, and special characters.";
+                            strengthText.style.color = "orange";
+                        } else {
+                            strengthText.textContent = "Strong password✅";
+                            strengthText.style.color = "green";
+                        }
+                    }
+                }
+
+                
+            function togglePasswordVisibility() {
+                var passwordInput = document.getElementById("password");
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+            }
+            function validateEmail() {
+                var email = document.getElementById("email").value;
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+                if (!emailRegex.test(email)) {
+                    alert("Please enter a valid email address");
+                    return false;
+                }
+            
+                return true;
+            } 
+            document.addEventListener("DOMContentLoaded", function() {
+            var loginButton = document.querySelector(".form-group1 button");
+            loginButton.addEventListener("mouseover", function() {
+                this.style.backgroundColor = "green";
+            });
+            loginButton.addEventListener("mouseout", function() {
+                this.style.backgroundColor = "#007BFF";
+            });
+        });
+            
+            </script>
+            </body>
+            </html>                         
